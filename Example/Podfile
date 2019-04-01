@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'LQBottomSheetView_Example' do
+  pod 'LQBottomSheetView', :path => '../'
+
+  target 'LQBottomSheetView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
