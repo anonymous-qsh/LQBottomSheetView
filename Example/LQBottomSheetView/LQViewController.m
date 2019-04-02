@@ -8,22 +8,41 @@
 
 #import "LQViewController.h"
 
-@interface LQViewController ()
+@interface LQViewController () <LQBottomSheetPresenterDelegate>
+
+@property(nonatomic) LQBottomSheetPresenter *presenter;
 
 @end
 
 @implementation LQViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    view.backgroundColor = [UIColor greenColor];
+    _presenter = [[LQBottomSheetPresenter alloc] initWithView:self.view andDelegate:self];
+    _presenter.isBottomSheetHidden = YES;
+    [_presenter setupBottomSheetViewWithView:view];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (double)bounceHeight {
+    return 500;
+}
+
+- (double)expandedHeight {
+    return 300;
+}
+
+- (double)collapsedHeight {
+    return 100;
+}
+
+- (void)animationFinished {
+
 }
 
 @end
