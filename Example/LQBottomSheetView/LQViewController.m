@@ -24,20 +24,27 @@
     _presenter.isBottomSheetHidden = YES;
     [_presenter setupBottomSheetViewWithView:view];
 
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
-    btn.userInteractionEnabled = NO;
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 100, 20)];
     btn.backgroundColor = [UIColor redColor];
-    btn.titleLabel.text = @"Test";
 
-//    [btn bk_whenTapped:^{
-//        NSLog(@"TEST");
-//    }];
+    [btn bk_whenTapped:^{
+        [_presenter dismiss];
+    }];
 
     [self.view addSubview:btn];
+
+    UIButton *btn1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 100, 100, 20)];
+    btn1.backgroundColor = [UIColor greenColor];
+
+    [btn1 bk_whenTapped:^{
+        [_presenter display];
+    }];
+
+    [self.view addSubview:btn1];
 }
 
 - (void)maskViewClicked {
-    NSLog(@"LQTest: mask clicked.");
+    [_presenter dismiss];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,11 +56,11 @@
 }
 
 - (double)expandedHeight {
-    return 300;
+    return 400;
 }
 
 - (double)collapsedHeight {
-    return 100;
+    return 300;
 }
 
 - (void)animationFinished {

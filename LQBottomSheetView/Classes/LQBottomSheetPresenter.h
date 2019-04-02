@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// expandedHeight - 
+
 @protocol LQBottomSheetPresenterDelegate <NSObject>
 
 - (double)bounceHeight;
@@ -30,6 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithView: (UIView *)superView andDelegate: (id<LQBottomSheetPresenterDelegate>)delegate;
 
 - (void) setupBottomSheetViewWithView:(UIView *)contentView;
+
+- (void) dismiss;
+
+- (void) display;
+
+- (void) show;
 
 @end
 

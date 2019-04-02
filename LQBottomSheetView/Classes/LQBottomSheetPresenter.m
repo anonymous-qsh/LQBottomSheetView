@@ -12,12 +12,14 @@
 #import "LQBottomSheetView.h"
 
 #import "BlocksKit+UIKit.h"
+#import <LQUIColor/UIColor+LQUtils.h>
 
 @interface LQBottomSheetPresenter ()
 
 @property(nonatomic) LQBottomSheetView *bottomSheetView;
 @property(nonatomic) NSLayoutConstraint *bottomSheetBottomConstaint;
 @property(nonatomic) CGFloat initialBottomConststraintValue;
+@property(nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
 @end
 
@@ -37,9 +39,9 @@
     self.bottomSheetView.userInteractionEnabled = YES;
     self.bottomSheetView.translatesAutoresizingMaskIntoConstraints = false;
     self.bottomSheetView.backgroundColor = UIColor.whiteColor;
-    
+
     [self.superView addSubview:self.bottomSheetView];
-    
+
     _bottomSheetView.maskView.userInteractionEnabled = YES;
 
     [self.bottomSheetView.maskView bk_whenTapped:^{
@@ -86,10 +88,10 @@
     [self.superView addConstraint:bottomSheetViewBottomConstraint];
     [self.superView addConstraint:heightConstraint];
     self.bottomSheetView.userInteractionEnabled = YES;
-    UIPanGestureRecognizer
-        *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(draggingWithPanGesture:)];
-    [self.bottomSheetView addGestureRecognizer:panGesture];
-//    [self.bottomSheetView.chevronView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chevronViewTapGesture:)]];
+
+    _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(draggingWithPanGesture:)];
+    [self.bottomSheetView addGestureRecognizer:_panGesture];
+
     [self.superView addSubview:self.bottomSheetView];
 }
 
@@ -103,8 +105,8 @@
     BOOL isUpSwipe = translation.y < 0;
 
     double resistence = 0;
-    if (isUpSwipe
-        && self.initialBottomConststraintValue == ([self.delegate bounceHeight] - [self.delegate expandedHeight])) {
+
+    if (isUpSwipe && self.initialBottomConststraintValue == ([self.delegate bounceHeight] - [self.delegate expandedHeight])) {
 
         resistence = translation.y * 0.65;
     }
@@ -112,26 +114,19 @@
     double newBottomConstraintConstant = self.initialBottomConststraintValue + translation.y - resistence;
 
     switch (pan.state) {
+        case UIGestureRecognizerStateChanged:
+            [self handleChangedPanState:isUpSwipe newBottomConstraintConstant:newBottomConstraintConstant];
+            break;
 
-//    case UIGestureRecognizerStateBegan:[self.bottomSheetView update:ChevronViewStateFlat];
-//        break;
+        case UIGestureRecognizerStateEnded:
+            [self handleEndedPanState:isUpSwipe translation:&translation];
+            break;
 
-    case UIGestureRecognizerStateChanged:
-        [self handleChangedPanState:isUpSwipe
-        newBottomConstraintConstant:newBottomConstraintConstant];
-        break;
-
-    case UIGestureRecognizerStateEnded:
-        [self handleEndedPanState:isUpSwipe
-                      translation:&translation];
-        break;
-
-    default:break;
+        default:break;
     }
 }
 
-- (void)handleChangedPanState:(BOOL)isUpSwipe
-  newBottomConstraintConstant:(double)newBottomConstraintConstant {
+- (void)handleChangedPanState:(BOOL)isUpSwipe newBottomConstraintConstant:(double)newBottomConstraintConstant {
     if (isUpSwipe) {
 
         if (newBottomConstraintConstant < 0) {
@@ -154,8 +149,8 @@
     }
 }
 
-- (void)handleEndedPanState:(BOOL)isUpSwipe
-                translation:(const CGPoint *)translation {
+- (void)handleEndedPanState:(BOOL)isUpSwipe translation:(const CGPoint *)translation {
+
     if (isUpSwipe) {
 
         if (self.isBottomSheetHidden) {
@@ -174,25 +169,21 @@
     } else {
 
         if (self.isBottomSheetHidden) {
-
-            [self hideWithChevronDisplaying];
+            [self dismiss];
         } else {
 
             if (translation->y >= MIN_VERTICAL_SCROLLING_VALUE_FOR_HIDING) {
-
                 [self hideWithChevronDisplaying];
             } else {
-
-                [self show];
+                [self dismiss];
             }
+
         }
     }
 }
 
 - (void)show {
     self.isBottomSheetHidden = false;
-//    [self.bottomSheetView update:ChevronViewStateUp];
-
 
     [UIView animateWithDuration:HOMES_POPUP_ANIMATION_SPEED animations:^{
 
@@ -207,7 +198,6 @@
 
 - (void)hideAnimated:(BOOL)animated {
     self.isBottomSheetHidden = true;
-//    [self.bottomSheetView update:ChevronViewStateDown];
 
     void (^animation)(void) = ^{
         self.bottomSheetBottomConstaint.constant = (CGFloat) [self.delegate bounceHeight];
@@ -229,24 +219,45 @@
     }
 }
 
-
 - (void)hideWithChevronDisplaying {
     self.isBottomSheetHidden = true;
-//    [self.bottomSheetView update:ChevronViewStateDown];
 
     [UIView animateWithDuration:HOMES_POPUP_ANIMATION_SPEED
-        animations:^{
+                     animations:^{
 
-          CGFloat bottomSheetHeight = (CGFloat)(
-              [self.delegate bounceHeight] - [self.delegate collapsedHeight]);
-          self.bottomSheetBottomConstaint.constant = bottomSheetHeight;
-          [self.superView layoutIfNeeded];
+                         CGFloat bottomSheetHeight = (CGFloat) (
+                             [self.delegate bounceHeight] - [self.delegate collapsedHeight]);
+                         self.bottomSheetBottomConstaint.constant = bottomSheetHeight;
+                         [self.superView layoutIfNeeded];
 
-        }
-        completion:^(BOOL finished) {
+                     }
+                     completion:^(BOOL finished) {
 
-          [self.delegate animationFinished];
-        }];
+                         [self.delegate animationFinished];
+                     }];
+}
+
+- (void)dismiss {
+
+
+    // to remove gesture otherwise gesture will be triggered though view dismiss;
+    [self.bottomSheetView removeGestureRecognizer:_panGesture];
+
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.bottomSheetBottomConstaint.constant = (CGFloat) [self.delegate bounceHeight];
+                         [self.superView layoutIfNeeded];
+                         self.bottomSheetView.maskView.backgroundColor = [UIColor clearColor];
+                     }
+    ];
+}
+
+- (void)display {
+
+    [self.bottomSheetView addGestureRecognizer:_panGesture];
+
+    self.bottomSheetView.maskView.backgroundColor = [UIColor colorWithHexString:@"7F7F7F" andAlpha:0.6];
+    [self hideWithChevronDisplaying];
 }
 
 @end
