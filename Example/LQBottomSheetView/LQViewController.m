@@ -25,12 +25,13 @@
     [_presenter setupBottomSheetViewWithView:view];
 
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
+    btn.userInteractionEnabled = NO;
     btn.backgroundColor = [UIColor redColor];
     btn.titleLabel.text = @"Test";
 
-    [btn bk_whenTapped:^{
-        NSLog(@"TEST");
-    }];
+//    [btn bk_whenTapped:^{
+//        NSLog(@"TEST");
+//    }];
 
     [self.view addSubview:btn];
 }

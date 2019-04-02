@@ -10,7 +10,8 @@
 
 #import "LQBottomSheetPresenter.h"
 #import "LQBottomSheetView.h"
-@import BlocksKit;
+
+#import "BlocksKit+UIKit.h"
 
 @interface LQBottomSheetPresenter ()
 
@@ -29,6 +30,7 @@
     }
     return self;
 }
+
 - (void)setupBottomSheetViewWithView:(UIView *)contentView {
     self.bottomSheetView =
         [[LQBottomSheetView alloc] initWithView:contentView isSheetCollapsed:self.isBottomSheetHidden];
@@ -41,7 +43,6 @@
     _bottomSheetView.maskView.userInteractionEnabled = YES;
 
     [self.bottomSheetView.maskView bk_whenTapped:^{
-        NSLog(@"TEST: Tapped mask view.");
         [self.delegate maskViewClicked];
     }];
 
@@ -228,20 +229,24 @@
     }
 }
 
+
 - (void)hideWithChevronDisplaying {
     self.isBottomSheetHidden = true;
 //    [self.bottomSheetView update:ChevronViewStateDown];
 
-    [UIView animateWithDuration:HOMES_POPUP_ANIMATION_SPEED animations:^{
+    [UIView animateWithDuration:HOMES_POPUP_ANIMATION_SPEED
+        animations:^{
 
-        CGFloat bottomSheetHeight = (CGFloat) ([self.delegate bounceHeight] - [self.delegate collapsedHeight]);
-        self.bottomSheetBottomConstaint.constant = bottomSheetHeight;
-        [self.superView layoutIfNeeded];
+          CGFloat bottomSheetHeight = (CGFloat)(
+              [self.delegate bounceHeight] - [self.delegate collapsedHeight]);
+          self.bottomSheetBottomConstaint.constant = bottomSheetHeight;
+          [self.superView layoutIfNeeded];
 
-    }                completion:^(BOOL finished) {
+        }
+        completion:^(BOOL finished) {
 
-        [self.delegate animationFinished];
-    }];
+          [self.delegate animationFinished];
+        }];
 }
 
 @end

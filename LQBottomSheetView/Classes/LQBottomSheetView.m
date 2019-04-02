@@ -6,7 +6,7 @@
 //
 
 #import "LQBottomSheetView.h"
-@import LQUIColor;
+#import <LQUIColor/UIColor+LQUtils.h>
 
 @interface LQBottomSheetView ()
 
@@ -28,10 +28,6 @@
     self.backgroundColor = [UIColor clearColor];
     _maskView = [[UIView alloc] initWithFrame: CGRectMake(0, -[UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     _maskView.backgroundColor = [UIColor colorWithHexString:@"7F7F7F" andAlpha:0.6];
-
-//    [_maskView bk_whenTapped:^{
-//        NSLog(@"TestLq: xxxxxxxxxx");
-//    }];
 
     [self addSubview:_maskView];
 //    self.layer.cornerRadius = 16;
