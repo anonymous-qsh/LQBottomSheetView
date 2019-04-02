@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (double)bounceHeight;
 - (double)expandedHeight;
 - (double)collapsedHeight;
+
 - (void)animationFinished;
+- (void)maskViewClicked;
 
 @end
 

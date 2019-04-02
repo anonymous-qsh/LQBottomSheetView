@@ -23,6 +23,20 @@
     _presenter = [[LQBottomSheetPresenter alloc] initWithView:self.view andDelegate:self];
     _presenter.isBottomSheetHidden = YES;
     [_presenter setupBottomSheetViewWithView:view];
+
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
+    btn.backgroundColor = [UIColor redColor];
+    btn.titleLabel.text = @"Test";
+
+    [btn bk_whenTapped:^{
+        NSLog(@"TEST");
+    }];
+
+    [self.view addSubview:btn];
+}
+
+- (void)maskViewClicked {
+    NSLog(@"LQTest: mask clicked.");
 }
 
 - (void)didReceiveMemoryWarning {

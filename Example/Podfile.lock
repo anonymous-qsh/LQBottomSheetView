@@ -1,16 +1,44 @@
 PODS:
-  - LQBottomSheetView (0.1.0)
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - LQBottomSheetView (0.1.0):
+    - BlocksKit
+    - LQUIColor
+  - LQUIColor (0.1.0)
 
 DEPENDENCIES:
+  - BlocksKit
   - LQBottomSheetView (from `../`)
+  - LQUIColor
+
+SPEC REPOS:
+  https://github.com/anonymous-qsh/Specs.git:
+    - LQUIColor
+  https://github.com/cocoapods/specs.git:
+    - BlocksKit
 
 EXTERNAL SOURCES:
   LQBottomSheetView:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LQBottomSheetView: 6640276bfad38dd776f14d731f0e2ee6bfc609cb
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  LQBottomSheetView: d849adbbcff7d4c45fe5f362443b91d1c94d89b2
+  LQUIColor: eea6ed37f27e57728dc9ba8e276eb07f9839aed1
 
-PODFILE CHECKSUM: 1ea4856e79274385060e15a9988769afd353c445
+PODFILE CHECKSUM: 7577a47aec39442e2b7357d68c542795b7d44f55
 
 COCOAPODS: 1.7.0.beta.2

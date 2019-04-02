@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		107F65CD0C92125A138A694A /* Pods-LQBottomSheetView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LQBottomSheetView_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LQBottomSheetView_Tests/Pods-LQBottomSheetView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		27B03E0D5CC08B8EA3B19BC6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		27B03E0D5CC08B8EA3B19BC6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* LQBottomSheetView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LQBottomSheetView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,9 +63,9 @@
 		7817414ED1CC8966297E1977 /* Pods-LQBottomSheetView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LQBottomSheetView_Example.debug.xcconfig"; path = "Target Support Files/Pods-LQBottomSheetView_Example/Pods-LQBottomSheetView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87431083E0B92A4DF740958D /* Pods-LQBottomSheetView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LQBottomSheetView_Tests.release.xcconfig"; path = "Target Support Files/Pods-LQBottomSheetView_Tests/Pods-LQBottomSheetView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		A6B4F60F0152D41329D60B84 /* LQBottomSheetView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LQBottomSheetView.podspec; path = ../LQBottomSheetView.podspec; sourceTree = "<group>"; };
+		A6B4F60F0152D41329D60B84 /* LQBottomSheetView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LQBottomSheetView.podspec; path = ../LQBottomSheetView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ACF268A1D664BFDE99FC12DE /* Pods_LQBottomSheetView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LQBottomSheetView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F085CBDF906E961CF184097E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F085CBDF906E961CF184097E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FD4BAE34BED57A545CA33A7A /* Pods_LQBottomSheetView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LQBottomSheetView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -193,7 +193,6 @@
 				107F65CD0C92125A138A694A /* Pods-LQBottomSheetView_Tests.debug.xcconfig */,
 				87431083E0B92A4DF740958D /* Pods-LQBottomSheetView_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -302,11 +301,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LQBottomSheetView_Example/Pods-LQBottomSheetView_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/LQBottomSheetView/LQBottomSheetView.framework",
+				"${BUILT_PRODUCTS_DIR}/LQUIColor/LQUIColor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LQBottomSheetView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LQUIColor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

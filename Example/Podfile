@@ -1,9 +1,15 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+source 'https://github.com/anonymous-qsh/Specs.git'
+
 use_frameworks!
 
 platform :ios, '8.0'
 
 target 'LQBottomSheetView_Example' do
   pod 'LQBottomSheetView', :path => '../'
+  pod 'BlocksKit'
+  pod 'LQUIColor'
 
   target 'LQBottomSheetView_Tests' do
     inherit! :search_paths

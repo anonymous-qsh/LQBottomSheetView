@@ -6,6 +6,7 @@
 //
 
 #import "LQBottomSheetView.h"
+@import LQUIColor;
 
 @interface LQBottomSheetView ()
 
@@ -24,12 +25,20 @@
 }
 
 - (void)baseInit {
-    self.backgroundColor = UIColor.whiteColor;
-    self.layer.cornerRadius = 16;
-    self.layer.masksToBounds = NO;
-    self.layer.shadowOffset = CGSizeMake(0, 0);
-    self.layer.shadowRadius = 2;
-    self.layer.shadowOpacity = 0.1;
+    self.backgroundColor = [UIColor clearColor];
+    _maskView = [[UIView alloc] initWithFrame: CGRectMake(0, -[UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    _maskView.backgroundColor = [UIColor colorWithHexString:@"7F7F7F" andAlpha:0.6];
+
+//    [_maskView bk_whenTapped:^{
+//        NSLog(@"TestLq: xxxxxxxxxx");
+//    }];
+
+    [self addSubview:_maskView];
+//    self.layer.cornerRadius = 16;
+//    self.layer.masksToBounds = NO;
+//    self.layer.shadowOffset = CGSizeMake(0, 0);
+//    self.layer.shadowRadius = 2;
+//    self.layer.shadowOpacity = 0.2;
 
     [self initContentView];
 }
@@ -59,7 +68,7 @@
                                                                                       toItem:self
                                                                                    attribute:NSLayoutAttributeTop
                                                                                   multiplier:1.0f
-                                                                                    constant:25];
+                                                                                    constant:0];
 
     NSLayoutConstraint *collectionViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.contentView
                                                                                       attribute:NSLayoutAttributeBottom
@@ -73,6 +82,19 @@
     [self addConstraint:collectionViewRightConstraint];
     [self addConstraint:collectionViewTopConstraint];
     [self addConstraint:collectionViewBottomConstraint];
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *view = [super hitTest:point withEvent:event];
+    
+    if (view == nil) {
+        CGPoint newPoint = [self.maskView convertPoint:point toView:self];
+        newPoint.y = -newPoint.y - self.maskView.bounds.size.height;
+        if (CGRectContainsPoint(self.maskView.bounds, newPoint)) {
+            view = self.maskView;
+        }
+    }
+    return view;
 }
 
 @end

@@ -10,6 +10,7 @@
 
 #import "LQBottomSheetPresenter.h"
 #import "LQBottomSheetView.h"
+@import BlocksKit;
 
 @interface LQBottomSheetPresenter ()
 
@@ -34,8 +35,15 @@
     self.bottomSheetView.userInteractionEnabled = YES;
     self.bottomSheetView.translatesAutoresizingMaskIntoConstraints = false;
     self.bottomSheetView.backgroundColor = UIColor.whiteColor;
-
+    
     [self.superView addSubview:self.bottomSheetView];
+    
+    _bottomSheetView.maskView.userInteractionEnabled = YES;
+
+    [self.bottomSheetView.maskView bk_whenTapped:^{
+        NSLog(@"TEST: Tapped mask view.");
+        [self.delegate maskViewClicked];
+    }];
 
     NSLayoutConstraint *bottomSheetViewLeftConstraint = [NSLayoutConstraint constraintWithItem:self.bottomSheetView
                                                                                      attribute:NSLayoutAttributeLeft
@@ -220,7 +228,6 @@
     }
 }
 
-// TODO: Change this.
 - (void)hideWithChevronDisplaying {
     self.isBottomSheetHidden = true;
 //    [self.bottomSheetView update:ChevronViewStateDown];
