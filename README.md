@@ -27,3 +27,5 @@ Little Queen, anonymous.qsh@gmail.com
 ## License
 
 LQBottomSheetView is available under the MIT license. See the LICENSE file for more info.
+
+This code reference the code of https://github.com/leshchenko/BottomSheet, Thanks for the author.

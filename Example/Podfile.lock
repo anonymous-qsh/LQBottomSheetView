@@ -17,40 +17,62 @@ PODS:
   - LQBottomSheetView (0.1.0):
     - BlocksKit
     - LQUIColor
-  - LQUIColor (0.1.0)
-  - REFormattedNumberField (1.1.6)
-  - RETableViewManager (1.7):
+  - LQTableViewManager (2.1.2):
+    - BlocksKit
+    - LQUIColor
+    - Masonry
+    - MBProgressHUD
     - REFormattedNumberField (~> 1.1.5)
     - REValidation (~> 0.1.4)
+    - SDWebImage
+  - LQUIColor (0.1.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - REFormattedNumberField (1.1.6)
   - REValidation (0.1.4)
+  - SDWebImage (5.0.0):
+    - SDWebImage/Core (= 5.0.0)
+  - SDWebImage/Core (5.0.0)
 
 DEPENDENCIES:
   - BlocksKit
   - LQBottomSheetView (from `../`)
+  - "LQTableViewManager (from `git@github.com:anonymous-qsh/LQTableViewManager.git`)"
   - LQUIColor
-  - RETableViewManager
 
 SPEC REPOS:
   https://github.com/anonymous-qsh/Specs.git:
     - LQUIColor
   https://github.com/cocoapods/specs.git:
     - BlocksKit
+    - Masonry
+    - MBProgressHUD
     - REFormattedNumberField
-    - RETableViewManager
     - REValidation
+    - SDWebImage
 
 EXTERNAL SOURCES:
   LQBottomSheetView:
     :path: "../"
+  LQTableViewManager:
+    :git: "git@github.com:anonymous-qsh/LQTableViewManager.git"
+
+CHECKOUT OPTIONS:
+  LQTableViewManager:
+    :commit: 6a80ce612c515b7c989af18ae0e0d5d5d822e856
+    :git: "git@github.com:anonymous-qsh/LQTableViewManager.git"
 
 SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   LQBottomSheetView: d849adbbcff7d4c45fe5f362443b91d1c94d89b2
+  LQTableViewManager: c0d528e49528f43c49f936f0f415d4f31b6c268f
   LQUIColor: eea6ed37f27e57728dc9ba8e276eb07f9839aed1
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
-  RETableViewManager: 0f24d796c42c0890d38c79cc9aeb3871e186726e
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
+  SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
 
-PODFILE CHECKSUM: cd5d1097d4a0125d3e8506e7f255c4fc792e8160
+PODFILE CHECKSUM: a97eac2c89a2b5a64bcbb4aca50d807779d26e41
 
 COCOAPODS: 1.7.0.beta.2

@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RETableViewManager/RETableViewManager.h>
+#import <LQTableViewManager/RETableViewManager.h>
 
 @interface LQDemoTableViewController : UITableViewController <RETableViewManagerDelegate>
 @end

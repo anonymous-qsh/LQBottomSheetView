@@ -11,8 +11,8 @@
 
 @interface LQViewController () <LQBottomSheetPresenterDelegate>
 
-@property(nonatomic) LQBottomSheetPresenter *presenter;
-@property(nonatomic, strong) LQDemoTableViewController *vc;
+@property (nonatomic        ) LQBottomSheetPresenter    *presenter;
+@property (nonatomic, strong) LQDemoTableViewController *vc;
 
 @end
 
