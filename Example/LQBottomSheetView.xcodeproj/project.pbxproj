@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		88300DC3DAB5BD276CE204E2 /* Pods_LQBottomSheetView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4BAE34BED57A545CA33A7A /* Pods_LQBottomSheetView_Example.framework */; };
+		AE6DCA1F8B8C668D725EE351 /* LQDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DC91EA25E5D22C7F67B13 /* LQDemoTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		87431083E0B92A4DF740958D /* Pods-LQBottomSheetView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LQBottomSheetView_Tests.release.xcconfig"; path = "Target Support Files/Pods-LQBottomSheetView_Tests/Pods-LQBottomSheetView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A6B4F60F0152D41329D60B84 /* LQBottomSheetView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LQBottomSheetView.podspec; path = ../LQBottomSheetView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ACF268A1D664BFDE99FC12DE /* Pods_LQBottomSheetView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LQBottomSheetView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE6DC91EA25E5D22C7F67B13 /* LQDemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDemoTableViewController.m; sourceTree = "<group>"; };
+		AE6DCD65F606CFFD3226196E /* LQDemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDemoTableViewController.h; sourceTree = "<group>"; };
 		F085CBDF906E961CF184097E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FD4BAE34BED57A545CA33A7A /* Pods_LQBottomSheetView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LQBottomSheetView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -140,6 +143,8 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				AE6DC91EA25E5D22C7F67B13 /* LQDemoTableViewController.m */,
+				AE6DCD65F606CFFD3226196E /* LQDemoTableViewController.h */,
 			);
 			name = "Example for LQBottomSheetView";
 			path = LQBottomSheetView;
@@ -304,12 +309,18 @@
 				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/LQBottomSheetView/LQBottomSheetView.framework",
 				"${BUILT_PRODUCTS_DIR}/LQUIColor/LQUIColor.framework",
+				"${BUILT_PRODUCTS_DIR}/REFormattedNumberField/REFormattedNumberField.framework",
+				"${BUILT_PRODUCTS_DIR}/RETableViewManager/RETableViewManager.framework",
+				"${BUILT_PRODUCTS_DIR}/REValidation/REValidation.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LQBottomSheetView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LQUIColor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/REFormattedNumberField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RETableViewManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/REValidation.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -370,6 +381,7 @@
 				6003F59E195388D20070C39A /* LQAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* LQViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				AE6DCA1F8B8C668D725EE351 /* LQDemoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

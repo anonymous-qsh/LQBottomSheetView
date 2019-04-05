@@ -147,6 +147,7 @@
             self.bottomSheetBottomConstaint.constant = (CGFloat) newBottomConstraintConstant;
         }
     }
+    [self.bottomSheetView bringSubviewToFront:self.bottomSheetView.contentView];
 }
 
 - (void)handleEndedPanState:(BOOL)isUpSwipe translation:(const CGPoint *)translation {

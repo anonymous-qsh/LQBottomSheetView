@@ -10,7 +10,7 @@
 
 @interface LQBottomSheetView ()
 
-@property(nonatomic, strong) UIView *contentView;
+// @property(nonatomic, strong, readwrite) UIView *contentView;
 
 @end
 

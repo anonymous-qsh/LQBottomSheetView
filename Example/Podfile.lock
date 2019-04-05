@@ -18,17 +18,26 @@ PODS:
     - BlocksKit
     - LQUIColor
   - LQUIColor (0.1.0)
+  - REFormattedNumberField (1.1.6)
+  - RETableViewManager (1.7):
+    - REFormattedNumberField (~> 1.1.5)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
 
 DEPENDENCIES:
   - BlocksKit
   - LQBottomSheetView (from `../`)
   - LQUIColor
+  - RETableViewManager
 
 SPEC REPOS:
   https://github.com/anonymous-qsh/Specs.git:
     - LQUIColor
   https://github.com/cocoapods/specs.git:
     - BlocksKit
+    - REFormattedNumberField
+    - RETableViewManager
+    - REValidation
 
 EXTERNAL SOURCES:
   LQBottomSheetView:
@@ -38,7 +47,10 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   LQBottomSheetView: d849adbbcff7d4c45fe5f362443b91d1c94d89b2
   LQUIColor: eea6ed37f27e57728dc9ba8e276eb07f9839aed1
+  REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
+  RETableViewManager: 0f24d796c42c0890d38c79cc9aeb3871e186726e
+  REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
 
-PODFILE CHECKSUM: 7577a47aec39442e2b7357d68c542795b7d44f55
+PODFILE CHECKSUM: cd5d1097d4a0125d3e8506e7f255c4fc792e8160
 
 COCOAPODS: 1.7.0.beta.2

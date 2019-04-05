@@ -7,10 +7,12 @@
 //
 
 #import "LQViewController.h"
+#import "LQDemoTableViewController.h"
 
 @interface LQViewController () <LQBottomSheetPresenterDelegate>
 
 @property(nonatomic) LQBottomSheetPresenter *presenter;
+@property(nonatomic, strong) LQDemoTableViewController *vc;
 
 @end
 
@@ -18,11 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    view.backgroundColor = [UIColor greenColor];
+
+    _vc = [[LQDemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    view.backgroundColor = [UIColor greenColor];
+    
     _presenter = [[LQBottomSheetPresenter alloc] initWithView:self.view andDelegate:self];
     _presenter.isBottomSheetHidden = YES;
-    [_presenter setupBottomSheetViewWithView:view];
+    _vc.view.userInteractionEnabled = NO;
+    [_presenter setupBottomSheetViewWithView:_vc.view];
 
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 50, 100, 20)];
     btn.backgroundColor = [UIColor redColor];
@@ -64,7 +71,7 @@
 }
 
 - (void)animationFinished {
-
+    [_vc.tableView reloadData];
 }
 
 @end

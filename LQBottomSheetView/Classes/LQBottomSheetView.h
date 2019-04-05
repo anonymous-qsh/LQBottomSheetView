@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LQBottomSheetView : UIView
 
 @property (nonatomic, strong, readwrite) UIView *maskView;
+@property(nonatomic, strong, readwrite) UIView *contentView;
 
 - (instancetype) initWithView: (UIView *)contentView isSheetCollapsed: (BOOL) isCollapsed;
 
