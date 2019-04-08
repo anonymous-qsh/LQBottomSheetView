@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)animationFinished;
 - (void)maskViewClicked;
 
+- (void) bottomSheetWillDisplay;
+- (void) didBottomSheetDismiss;
+
 @end
 
 @interface LQBottomSheetPresenter : NSObject

@@ -10,8 +10,7 @@ target 'LQBottomSheetView_Example' do
   pod 'LQBottomSheetView', :path => '../'
   pod 'BlocksKit'
   pod 'LQUIColor'
-#  pod 'RETableViewManager'
-pod 'LQTableViewManager', :git => 'git@github.com:anonymous-qsh/LQTableViewManager.git'
+  pod 'LQTableViewManager', '2.1.3'
 
   target 'LQBottomSheetView_Tests' do
     inherit! :search_paths

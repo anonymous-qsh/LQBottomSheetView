@@ -26,7 +26,6 @@
     [self.manager addSection:section];
 
     for (int i = 0; i < 20; i++) {
-//        [section addItem:[RETableViewItem itemWithTitle:@"TEST"]];
         [section addItem:[[LQReadOnlyItem alloc] initWithTitle:@"xxxxxxx" value:@"yyyyyyyy"]];
     }
 }

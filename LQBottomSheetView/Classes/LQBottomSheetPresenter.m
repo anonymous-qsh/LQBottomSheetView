@@ -240,7 +240,6 @@
 
 - (void)dismiss {
 
-
     // to remove gesture otherwise gesture will be triggered though view dismiss;
     [self.bottomSheetView removeGestureRecognizer:_panGesture];
 
@@ -249,12 +248,14 @@
                          self.bottomSheetBottomConstaint.constant = (CGFloat) [self.delegate bounceHeight];
                          [self.superView layoutIfNeeded];
                          self.bottomSheetView.maskView.backgroundColor = [UIColor clearColor];
+                         [self.delegate didBottomSheetDismiss];
                      }
     ];
 }
 
 - (void)display {
-
+    [self.delegate bottomSheetWillDisplay];
+    
     [self.bottomSheetView addGestureRecognizer:_panGesture];
 
     self.bottomSheetView.maskView.backgroundColor = [UIColor colorWithHexString:@"7F7F7F" andAlpha:0.6];
