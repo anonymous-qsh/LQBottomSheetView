@@ -8,11 +8,13 @@
 
 #import "LQViewController.h"
 #import "LQDemoTableViewController.h"
+#import "LQDemoWithBaseViewController.h"
 
 @interface LQViewController () <LQBottomSheetPresenterDelegate>
 
 @property (nonatomic        ) LQBottomSheetPresenter    *presenter;
 @property (nonatomic, strong) LQDemoTableViewController *vc;
+@property (nonatomic, strong) LQDemoWithBaseViewController *bvc;
 @property (nonatomic, strong) UIButton                  *showBtn;
 @property (nonatomic, strong) UIButton                  *dismissBtn;
 @property (nonatomic, assign) BOOL                      isFirstDisplay;
@@ -27,10 +29,12 @@
     self.isFirstDisplay = YES;
     
     _vc = [[LQDemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    _bvc = [[LQDemoWithBaseViewController alloc] init];
 
     _presenter = [[LQBottomSheetPresenter alloc] initWithView:self.view andDelegate:self];
     _presenter.isBottomSheetHidden = YES;
     _vc.view.userInteractionEnabled = NO;
+    _bvc.view.userInteractionEnabled = NO;
 //    [_presenter setupBottomSheetViewWithView:_vc.view];
 
     NSMutableArray *btnArray = [NSMutableArray array];
@@ -42,7 +46,7 @@
     [_showBtn bk_whenTapped:^{
         if (self.isFirstDisplay) {
             // when add subview in here, layout relationship will change, so you could bring subview to front.
-            [_presenter setupBottomSheetViewWithView:_vc.view];
+            [_presenter setupBottomSheetViewWithView:_bvc.view];
             [self.view bringSubviewToFront:_showBtn];
             self.isFirstDisplay = NO;
         } else {
