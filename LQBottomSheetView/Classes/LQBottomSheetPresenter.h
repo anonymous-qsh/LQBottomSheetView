@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "LQBottomSheetView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,9 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LQBottomSheetPresenter : NSObject
 
-@property (nonatomic) UIView * superView;
-@property (nonatomic) BOOL isBottomSheetHidden;
-@property (nonatomic) id<LQBottomSheetPresenterDelegate> delegate;
+@property (nonatomic                   ) UIView                         * superView;
+@property (nonatomic                   ) BOOL                           isBottomSheetHidden;
+@property (nonatomic                   ) id<LQBottomSheetPresenterDelegate> delegate;
+// expose this to show.
+@property (nonatomic, readwrite, strong) LQBottomSheetView              *bottomSheetView;
 
 - (instancetype)initWithView: (UIView *)superView andDelegate: (id<LQBottomSheetPresenterDelegate>)delegate;
 

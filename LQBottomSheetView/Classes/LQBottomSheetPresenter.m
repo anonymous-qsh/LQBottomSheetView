@@ -16,7 +16,6 @@
 
 @interface LQBottomSheetPresenter ()
 
-@property(nonatomic) LQBottomSheetView *bottomSheetView;
 @property(nonatomic) NSLayoutConstraint *bottomSheetBottomConstaint;
 @property(nonatomic) CGFloat initialBottomConststraintValue;
 @property(nonatomic, strong) UIPanGestureRecognizer *panGesture;
@@ -63,15 +62,15 @@
                                                                                       attribute:NSLayoutAttributeRight
                                                                                      multiplier:1.0
                                                                                        constant:0];
-    double
-        bottomConstant = self.isBottomSheetHidden ? [self.delegate bounceHeight] - [self.delegate collapsedHeight] : 0;
+
+    // deal with for the first display.
     NSLayoutConstraint *bottomSheetViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.bottomSheetView
                                                                                        attribute:NSLayoutAttributeBottom
                                                                                        relatedBy:NSLayoutRelationEqual
                                                                                           toItem:self.superView
                                                                                        attribute:NSLayoutAttributeBottom
                                                                                       multiplier:1.0f
-                                                                                        constant:(CGFloat) bottomConstant];
+                                                                                        constant:(CGFloat) [self.delegate bounceHeight]];
     /* Fixed Height */
     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.bottomSheetView
                                                                         attribute:NSLayoutAttributeHeight
@@ -88,11 +87,24 @@
     [self.superView addConstraint:bottomSheetViewBottomConstraint];
     [self.superView addConstraint:heightConstraint];
     self.bottomSheetView.userInteractionEnabled = YES;
+    
+    // in here must call this, but I don't know why.
+    [self.superView layoutIfNeeded];
 
     _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(draggingWithPanGesture:)];
     [self.bottomSheetView addGestureRecognizer:_panGesture];
 
-    [self.superView addSubview:self.bottomSheetView];
+    [UIView animateWithDuration:HOMES_POPUP_ANIMATION_SPEED
+        animations:^{
+
+            CGFloat bottomSheetHeight = (CGFloat)([self.delegate bounceHeight] - [self.delegate collapsedHeight]);
+            self.bottomSheetBottomConstaint.constant = bottomSheetHeight;
+            [self.superView layoutIfNeeded];
+        }
+        completion:^(BOOL finished) {
+
+            [self.delegate animationFinished];
+        }];
 }
 
 - (void)draggingWithPanGesture:(UIPanGestureRecognizer *)pan {
@@ -248,6 +260,9 @@
                          self.bottomSheetBottomConstaint.constant = (CGFloat) [self.delegate bounceHeight];
                          [self.superView layoutIfNeeded];
                          self.bottomSheetView.maskView.backgroundColor = [UIColor clearColor];
+                     }
+                     completion:^(BOOL finished) {
+                         // cb wrong place before.
                          [self.delegate didBottomSheetDismiss];
                      }
     ];
